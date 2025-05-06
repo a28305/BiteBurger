@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiteBurger</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="fonts.css">
+</head>
+<body>
+  <header>
+    <img src="../Imagenes/logo.png" alt="BiteBurger Logo" class="logo-img">
+    
+    <!-- Botón para abrir/cerrar el menú en dispositivos móviles -->
+    <nav id="burger"></nav>
+    
+    <nav id="navbar" class="hidden">
+      <a href="#" class="btn">MENU</a>
+      <a href="#news" class="btn">NEWS</a>
+      <a href="#locations" class="btn">LOCATION</a>
+      <a href="# " class="btn2">
+        <img src="https://img.icons8.com/ios-filled/24/ffffff/shopping-bag.png" alt="Cart">
+      </a>
+    </nav>
+  </header>
+  
+  <section class="hero">
+    <div class="hero-text">
+      <h1>BITE INTO<br><span class="highlight">FLAVOUR</span></h1>
+      <button class="btn">ORDER NOW</button>
+      
+    </div>
+    <img src="../Imagenes/hamburguesatitulo.png" alt="Burger Hero" class="hero-img">
+  </section>
+
+  <section class="products" id="productos">
+    <h2>Discover our burgers</h2>
+    <div id="productos-container">
+      <!-- Aquí se cargarán los productos aleatorios -->
+    </div>
+  </section>
+  <!-- Sección Locations -->
+<section class="locations" id="locations">
+  <h2>FIND US NEAR YOU</h2>
+    <p class="location-description">Visit one of our delicious locations and bite into flavour! Choose the location closest to you and enjoy the BiteBurger experience.</p>
+
+    <div class="locations-list">
+      <div class="location-card">
+        <h3>BiteBurger Downtown</h3>
+        <p>Experience the best in the heart of the city. We serve up juicy burgers with a side of urban energy.</p>
+        <p><strong>Address:</strong> 123 Main St, Springfield</p>
+      </div>
+      <div class="location-card">
+        <h3>BiteBurger East Side</h3>
+        <p>Enjoy a laid-back vibe and delicious bites at our East Side location, just a block from the park.</p>
+        <p><strong>Address:</strong> 456 Elm St, River City</p>
+      </div>
+      <div class="location-card">
+        <h3>BiteBurger West Hills</h3>
+        <p>Take in the view while savoring our mouth-watering burgers in the scenic West Hills area.</p>
+        <p><strong>Address:</strong> 789 Oak Ave, Hilltown</p>
+      </div>
+    </div>
+
+    <div id="map" class="map-container"></div>
+  </section>
+
+</section>
+
+<!-- Sección News -->
+<section class="news" id="news">
+  <h2>Últimas Noticias</h2>
+  <p>Descubre promociones y novedades en BiteBurger.</p>
+  <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+</section>
+  <footer class="footer">
+    <p>&copy; 2025 BiteBurger - All rights reserved</p>
+    <button class="work-button">Work With Us</button>
+  </footer>
+  
+  <script src="script.js"></script>
+
+
+</body>
+</html>
