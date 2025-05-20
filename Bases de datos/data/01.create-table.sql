@@ -170,12 +170,3 @@ CREATE TABLE Curriculum (
     FOREIGN KEY (id_oferta) REFERENCES Ofertas_Trabajo(id_oferta)
 );
 
-CREATE TABLE Carrito (
-    id_carrito INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT,
-    id_producto INT,
-    cantidad INT CHECK (cantidad > 0),
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
-    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto)
-);
-
