@@ -11,21 +11,21 @@ INSERT INTO Categoria (tipo, descripcion) VALUES
 ('drinks', 'Drinks to complement a menu');
 
 
-INSERT INTO Producto (nombre, precio, id_categoria, disponibilidad, imagenes) VALUES
-('classic burger', 5.99, 1, 'Disponible', 'meet_burger.png'),
-('double-classic', 8.99, 1, 'Disponible', 'doble_burger.png'),
-('veggie', 7.49, 2, 'Disponible', 'veggie_burger.png'),
-('BBQ', 6.99, 1, 'Disponible', 'BBQ_burger.png'),
-('chicken', 5.99, 3, 'Disponible', 'chicken_burger.jpg'),
-('doble-chicken', 8.99, 3, 'Disponible', 'doble_chicken_burger.png'),
-('gluten-free', 6.50, 4, 'Disponible', 'gluten_free_burger.png'),
-('chips', 1.50, 5, 'Disponible', 'normal_chips.png'),
-('deluxe-chips', 1.99, 5, 'Disponible', 'deluxe_chips.png'),
-('water', 1.00, 6, 'Disponible', 'water.png'),
-('orange soda', 1.99, 6, 'Disponible', 'refresco_naranja.png'),
-('lemon soda', 1.99, 6, 'Disponible', 'refresco_limon.png'),
-('cola soda', 1.99, 6, 'Disponible', 'refresco_cola.png'),
-('iced lemon tea', 1.99, 6, 'Disponible', 'iced_tea.png');
+INSERT INTO Producto (nombre, precio, id_categoria, descripcion, imagenes) VALUES
+('classic burger', 5.99, 1, 'Juicy beef patty, creamy avocado, fresh tomato, and crisp lettuce, all stacked in a toasted bun-simple, classic, and mouthwateringly delicious.', 'meet_burger.png'),
+('double-classic', 8.99, 1, 'Double juicy beef patties, creamy avocado, fresh tomato, and crisp lettuce on a toasted bun-bold, classic flavor in every irresistible bite.', 'doble_burger.png'),
+('veggie', 7.49, 2, 'Two savory vegan patties, creamy avocado, crisp lettuce, and juicy tomato on a green veggie bun-fresh, vibrant, and packed with plant-powered flavor.', 'veggie_burger.png'),
+('BBQ', 6.99, 1, 'Two juicy beef patties, smoky bacon, and rich BBQ sauce on a toasted bun-bold, messy, and bursting with sweet, savory, and smoky flavor in every bite.', 'BBQ_burger.png'),
+('chicken', 5.99, 3, 'Crispy breaded chicken, fresh lettuce, and creamy mayo on a toasted bun-golden, crunchy, and deliciously smooth in every satisfying bite.', 'chicken_burger.jpg'),
+('doble-chicken', 8.99, 3, 'Double crispy breaded chicken, fresh lettuce, and creamy mayo on a toasted bun-extra crunch, extra flavor, and double the golden, juicy satisfaction.', 'doble_chicken_burger.png'),
+('gluten-free', 6.50, 4, 'Juicy beef patty, creamy avocado, fresh tomato, and crisp lettuce on a soft, gluten-free bun—pure, classic flavor with no sesame seeds, just goodness.', 'gluten_free_burger.png'),
+('chips', 1.50, 5, 'Golden, crispy classic fries. Perfectly salted, fluffy inside, and irresistibly crunchy with every bite. Simple, timeless, and always satisfying.', 'normal_chips.png'),
+('deluxe-chips', 1.99, 5, 'Thick-cut deluxe fries: Crispy on the outside, tender inside, seasoned to perfection for a bold, hearty bite every time. Rich, rustic, and deeply satisfying.', 'deluxe_chips.png'),
+('water', 1.00, 6, 'Just mineral water.', 'water.png'),
+('orange soda', 1.99, 6, 'Vibrant orange soda, fizzy and sweet with zesty citrus punch: refreshingly bright and bursting with lively, tangy flavor in every bubbly sip.', 'refresco_naranja.png'),
+('lemon soda', 1.99, 6, 'Crisp lemon soda, sparkling and tart with a refreshing citrus zing: cool, lively, and perfectly balanced for a thirst-quenching blast.', 'refresco_limon.png'),
+('cola soda', 1.99, 6, 'Classic cola soda: bold, fizzy, and sweet with deep caramel notes and a refreshing sparkle that wakes up your taste buds with every sip.', 'refresco_cola.png'),
+('iced lemon tea', 1.99, 6, 'Refreshing iced tea soda: lightly sweetened with natural tea notes and a hint of citrus, sparkling and cool for a crisp, revitalizing sip every time.', 'iced_tea.png');
 
 
 INSERT INTO Ingrediente (nombre, imagen) VALUES
