@@ -48,7 +48,7 @@ CREATE TABLE Producto (
     nombre VARCHAR(100),
     precio DECIMAL(10,2),
     id_categoria INT,
-    disponibilidad VARCHAR(50),
+    descripcion VARCHAR(200),
     imagenes VARCHAR(255),
     FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria)
 );
