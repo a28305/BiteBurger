@@ -1,0 +1,434 @@
+:root {
+  --primary-color: #f6aa1c;
+  --background-color: #171210;
+  --text-color: white;
+  --font-size-lg: 8rem;
+  --font-size-md: 4rem;
+}
+/* GENERAL */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #171210;
+    color: white;
+    font-size: 1.3rem;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+    font-size: 1.3rem;
+  }
+  
+  .logo-img {
+    height: 80px;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 6rem; /* antes: 2rem 3rem */
+    background: #171210;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* antes: space-around */
+    width: 100%;
+  }
+  
+  nav a {
+    margin-left: 4rem; /* antes: 3rem, para mayor separación */
+  }  
+  
+  .btn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #f6aa1c;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn2 img {
+    width: 40px; /* Ajusta el tamaño */
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .btn2 img:hover {
+    transform: scale(1.1); /* Efecto al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+   #vaciar-carrito {
+    background-color:  white; /* Rojo */
+    color: #171210;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#vaciar-carrito:hover {
+    background-color: #cc0000; /* Rojo más oscuro al pasar el mouse */
+}
+
+#procesar-pedido {
+    background-color: #f6aa1c; /* Verde */
+    color: #171210;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#procesar-pedido:hover {
+    background-color: #1e7e34; /* Verde más oscuro al pasar el mouse */
+}
+#carrito-section {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    background: #252525;
+    color: #f6aa1c;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto; /* Permite desplazarse si hay muchos productos */
+    z-index: 1000;
+}
+
+#carrito-section table {
+    width: 100%;
+    table-layout: fixed; /* Evita que las celdas crezcan descontroladamente */
+}
+
+#carrito-section th, #carrito-section td {
+    padding: 10px;
+    border-bottom: 1px solid #444;
+    word-wrap: break-word; /* Evita que el texto se salga del cuadro */
+    overflow: hidden;
+    text-align: center; /* Centra el texto en las columnas */
+    font-size: 13px; /* Ajusta el tamaño de fuente */
+    max-width: 80px; /* Limita el ancho máximo */
+}
+
+#carrito-section img {
+    max-width: 80px; /* Controla el tamaño de las imágenes */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#carrito-section button {
+    width: 100%; /* Asegura que los botones no se desborden */
+    font-size: 1rem;
+}
+
+
+/* Menú desplegable */
+.dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #525151;
+    list-style: none;
+    padding: 10px;
+    width: 180px;
+    z-index: 1000;
+    text-align: center; /* Centra el texto dentro del menú */
+  }
+  
+  .menu li {
+    padding: 8px;
+    text-align: center; /* Centra cada item */
+  }
+  
+ .menu a {
+    text-decoration: none;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    width: 100%;
+    padding: 10px;
+    padding-left: 10px;
+    font-size: 1rem;
+}
+
+  /* HERO */
+.hero {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    padding: 2rem;
+    gap: 3rem;
+    background-image: url('../Imagenes/banner_publi.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+  
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(23, 18, 16, 0.85); /* oscurece fondo para legibilidad */
+    z-index: 1;
+}
+  
+.hero-text, .hero-img {
+    position: relative;
+    z-index: 2;
+}
+  
+.hero-text {
+    max-width: 50%;
+    text-align: center;
+}
+  
+.hero-text h1 {
+    font-size: 8rem;
+    line-height: 1.1;
+    font-family: 'Impact';
+    margin: 0;
+}
+  
+.highlight {
+    color: #f6aa1c;
+    font-weight: bold;
+}
+  
+.hero-text button {
+    margin-top: 2rem;
+    padding: 1.8rem 4rem;
+    font-size: 2.5rem;
+    border: none;
+    background: #f6aa1c;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: transform 0.2s ease;
+}
+  
+.hero-text button:hover {
+    transform: scale(1.05);
+}
+  
+.hero-img {
+    max-width: 40%;
+    height: auto;
+}
+  
+  /* JOB CARDS */
+.jobs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4rem 2rem;
+}
+  
+.job-card {
+    background: #f6aa1c65;
+    border-radius: 15px;
+    padding: 2rem;
+    width: 300px;
+    text-align: center;
+}
+  
+.job-card img.job-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-bottom: 1rem;
+}
+  
+.job-card h3 {
+    color: #f6aa1c;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+  
+.job-card p {
+    color: #ccc;
+    font-size: 1.2rem;
+}
+  
+.job-card span {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #f6aa1c;
+    font-size: 1.3rem;
+}
+  
+  /* FOOTER */
+/* Footer */
+.footer {
+  background: #1a1a1a;
+  color: var(--primary-color);
+  padding: 2rem;
+  font-size: 1rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-logo img {
+  width: 120px;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+  font-weight: bold;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-links img {
+  width: 20px;
+  height: 20px;
+  filter: invert(60%) sepia(70%) saturate(300%) hue-rotate(5deg);
+}
+
+  
+  /* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero {
+      flex-direction: column;
+      text-align: center;
+  }
+  
+  .hero-text h1 {
+      font-size: 4rem;
+  }
+  
+  .hero-text button {
+      font-size: 1.5rem;
+      padding: 1.2rem 2.5rem;
+  }
+  
+  .hero-img {
+      max-width: 90%;
+  }
+  
+  .card, .job-card {
+      width: 90%;
+  }
+  header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+}
+  
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+  
+.btn, .btn2, #toggleMenu {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+  
+.menu {
+      position: static;
+      width: 100%;
+      text-align: center;
+}
+  
+.menu {
+  position: absolute; /* Mantener absoluto para evitar que desaparezca */
+  width: 100%;
+  text-align: center;
+  }
+}
+.job-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background-color: #f6aa1c;
+  color: black;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+  
+.job-btn:hover {
+    background-color: #e69c1a;
+    transform: scale(1.05);
+}
+  
+  

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details</title>
+  <link rel="stylesheet" href="detalles.css">
+</head>
+<body>
+<body>
+    <header>
+    <a href="../principal/index.html">
+    <img src="../../Imagenes/logo.png" alt="BiteBurger Logo" class="logo-img"/>
+    </a> 
+    <nav id="navbar" class="hidden">
+      <a href="../login/login.html" class="btn">LOGIN</a>
+        <a href="../Menu/menu.html" class="btn">MENU</a>
+        <a href="../Locations/locations.html" class="btn">LOCATION</a>
+        <div class="dropdown">
+            <a id="toggleMenu" class="btn">SHOW MORE</a>
+            <ul id="menuOpciones" class="menu">
+                <li><a href="../aboutus/About_us.html">About us</a></li>
+                <li><a href="../workus/workwithus.html">WORK WHIT US</a></li>
+                
+            </ul>
+        </div>
+        <a href="#" class="btn2">
+            <img src="../../Imagenes/bag.png" alt="Cart" id="cart-icon"/>
+        </a>
+    </nav>
+   </header>
+
+<aside id="carrito-section">
+  <div id="carrito">
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Imagen</th>
+                  <th>Name</th>
+                  <th>Prize</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody id="lista-carrito">
+              <!-- Productos del carrito -->
+          </tbody>
+          <tfoot>
+              <tr>
+                  <th colspan="2">Subtotal:</th>
+                  <th id="subtotal">S/. 0.00</th>
+              </tr>
+              <tr>
+                  <th colspan="2">IGV (18%):</th>
+                  <th id="igv">S/. 0.00</th>
+              </tr>
+              <tr>
+                  <th colspan="2">TOTAL:</th>
+                  <th><input type="text" id="total" value="S/. 0.00" readonly></th>
+              </tr>
+          </tfoot>
+      </table>
+      <button id="vaciar-carrito" class="btn btn-primary">Empty cart</button>
+      <button id="procesar-pedido" class="btn btn-danger">BUY</button>
+  </div>
+</aside>
+
+
+  <!-- Dynamic content for product details -->
+  <main id="detalle-producto" style="padding: 2rem;"></main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="../../Imagenes/logo.png" alt="Footer Logo" />
+        <span>© 2025 My Burger Restaurant</span>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="detalles.js"></script>
+  <script src="../../carrito.js"></script>
+  <script src="../../pedido.js"></script>
+
+</body>
+</html>

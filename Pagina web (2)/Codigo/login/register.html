@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - BiteBurger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Librería SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+    <header>
+        <a href="../principal/index.html">
+            <img src="../../Imagenes/logo.png" alt="BiteBurger Logo" class="logo-img"/>
+        </a>
+        <nav id="navbar">
+            <a href="../Menu/menu.html" class="btn">MENU</a>
+            <a href="../Locations/locations.html" class="btn">LOCATION</a>
+            <div class="dropdown">
+                <a id="toggleMenu" class="btn">SHOW MORE</a>
+                <ul id="menuOpciones" class="menu">
+                    <li><a href="../aboutus/About_us.html">About us</a></li>
+                    <li><a href="../workus/workwithus.html">WORK WITH US</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="formulario">
+            <h1>Register</h1>
+            <form method="post">
+                <div class="input-container">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                <div class="input-container">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-container">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-container">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <input type="submit" value="Register" class="btn3">
+                <div class="registrarse">
+                    Already have an account? <a href="login.html">Log In</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="../../Imagenes/logo.png" alt="BiteBurger Logo" />
+                <p>&copy; 2025 BiteBurger - All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="../../Imagenes/instagram_logo.png" alt="Instagram" />
+                    Instagram
+                </a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../principal/script.js"></script>
+     
+</body>
+</html>
