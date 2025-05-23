@@ -1,0 +1,255 @@
+:root {
+  --primary-color: #f6aa1c;
+  --background-color: #171210;
+  --text-color: white;
+  --secondary-color: #d38b14;
+  --hover-color: #b57710;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
+  font-size: 1.3rem;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 6rem;
+  background: var(--background-color);
+}
+
+.logo-img {
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+nav a {
+  margin-left: 4rem;
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* FORMULARIO */
+.formulario {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.formulario h1 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+/* INPUTS */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.input-container label {
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.input-container input {
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 96%;
+}
+
+input:focus {
+  outline: 2px solid var(--primary-color);
+  background: rgba(246, 170, 28, 0.2);
+}
+
+/* BOTÓN */
+.btn3 {
+  background-color: var(--primary-color);
+  color: black;
+  font-weight: bold;
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+
+.btn3:hover {
+  background-color: var(--secondary-color);
+}
+/* MENÚ DESPLEGABLE */
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #525151;
+    list-style: none;
+    padding: 10px;
+    width: 180px; /* Fijamos el ancho */
+    z-index: 1000;
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto se divida */
+    border-radius: 8px;
+    overflow: hidden; /* Evita que el texto sobresalga del recuadro */
+}
+
+.menu li {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box; /* Evita que el padding afecte el tamaño total */
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--primary-color);
+    display: block;
+    padding: 8px;
+    text-align: center;
+    font-size: 1rem;
+    overflow: hidden; /* Si el texto es muy largo, evita que se desborde */
+    max-width: 100%; /* Asegura que el texto respete los límites del menú */
+    word-wrap: break-word; /* Si el texto es muy largo, lo divide en varias líneas */
+}
+
+
+.menu a:hover {
+  background-color: var(--hover-color);
+}
+
+/* FOOTER */
+.footer {
+  background: #1a1a1a;
+  color: var(--primary-color);
+  padding: 2rem;
+  font-size: 1rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-logo img {
+  width: 120px;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+  font-weight: bold;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-links img {
+  width: 20px;
+  height: 20px;
+  filter: invert(60%) sepia(70%) saturate(300%) hue-rotate(5deg);
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    margin: 10px 0;
+  }
+
+  .formulario {
+    width: 90%;
+    max-width: 350px;
+    padding: 15px;
+  }
+
+  .input-container input {
+    width: 100%;
+    text-align: left;
+  }
+
+  .btn3 {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
