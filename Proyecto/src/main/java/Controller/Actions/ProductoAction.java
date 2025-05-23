@@ -1,6 +1,5 @@
 package Controller.Actions;
 
-
 import Model.Producto;
 import Model.ProductoDAO;
 import com.google.gson.Gson;
@@ -12,18 +11,12 @@ public class ProductoAction {
     private ProductoDAO productoDAO;
 
     public ProductoAction() {
-        this.productoDAO = new ProductoDAO();  // sin Connection, usa MotorSQL internamente
+        this.productoDAO = new ProductoDAO();
     }
 
+    // Cambiado para usar findById directo
     public Producto obtenerProducto(int id) {
-        // Creamos un filtro con el id para buscar con findAll y obtener el primer resultado
-        Producto filtro = new Producto();
-        filtro.setIdProducto(id);
-        ArrayList<Producto> resultados = productoDAO.findAll(filtro);
-        if (resultados.size() > 0) {
-            return resultados.get(0);
-        }
-        return null;
+        return productoDAO.findById(id);
     }
 
     public String buscarPorNombre(HttpServletRequest request) {
@@ -35,7 +28,7 @@ public class ProductoAction {
     }
 
     public ArrayList<Producto> listarProductos() {
-        return productoDAO.findAll(null);  // sin filtro para listar todo
+        return productoDAO.findAll(null);
     }
 
     public int crearProducto(Producto producto) {
