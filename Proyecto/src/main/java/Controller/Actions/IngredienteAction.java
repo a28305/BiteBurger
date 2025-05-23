@@ -2,37 +2,29 @@ package Controller.Actions;
 
 import Model.Ingrediente;
 import Model.IngredienteDAO;
+import Model.ProductoIngredienteDAO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+
 
 public class IngredienteAction {
 
     private IngredienteDAO ingredienteDAO;
+    private ProductoIngredienteDAO productoIngredienteDAO;
 
     public IngredienteAction() {
         this.ingredienteDAO = new IngredienteDAO();
+        this.productoIngredienteDAO = new ProductoIngredienteDAO();
     }
 
-    public int crearIngrediente(Ingrediente ingrediente) {
-        return ingredienteDAO.add(ingrediente);
-    }
 
-    public int actualizarIngrediente(Ingrediente ingrediente) {
-        return ingredienteDAO.update(ingrediente);
-    }
-
-    public int eliminarIngrediente(int id) {
-        return ingredienteDAO.delete(id);
-    }
-
-    public ArrayList<Ingrediente> buscarIngredientes(Ingrediente filtro) {
+    public ArrayList<Ingrediente> buscarIngredientes(Ingrediente filtro) throws SQLException {
         return ingredienteDAO.findAll(filtro);
     }
 
-    public Ingrediente obtenerIngredientePorId(int id) {
-        Ingrediente filtro = new Ingrediente();
-        filtro.setId_ingrediente(id);
-        ArrayList<Ingrediente> lista = ingredienteDAO.findAll(filtro);
-        return lista.isEmpty() ? null : lista.get(0);
+
+    public ArrayList<Ingrediente> listarPorProducto(int idProducto) throws SQLException {
+        return productoIngredienteDAO.findIngredientesPorProducto(idProducto);
     }
 }

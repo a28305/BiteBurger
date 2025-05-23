@@ -1,6 +1,5 @@
 package Model;
 
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,12 +15,11 @@ public class ProductoDAO implements IDao<Producto, Integer> {
 
     @Override
     public int add(Producto producto) {
-        String sql = "INSERT INTO Producto (nombre, precio, id_categoria, id_ingrediente, disponibilidad, imagenes) VALUES (" +
+        String sql = "INSERT INTO Producto (nombre, precio, id_categoria, descripcion, imagenes) VALUES (" +
                 "'" + producto.getNombre() + "', " +
                 producto.getPrecio() + ", " +
                 producto.getIdCategoria() + ", " +
-                producto.getId_ingrediente() + ", " +
-                "'" + producto.getDisponibilidad() + "', " +
+                "'" + producto.getDescripcion() + "', " +
                 "'" + producto.getImagenes() + "')";
         motorSql.connect();
         return motorSql.execute(sql);
@@ -40,8 +38,7 @@ public class ProductoDAO implements IDao<Producto, Integer> {
                 "nombre = '" + producto.getNombre() + "', " +
                 "precio = " + producto.getPrecio() + ", " +
                 "id_categoria = " + producto.getIdCategoria() + ", " +
-                "id_ingrediente = " + producto.getId_ingrediente() + ", " +
-                "disponibilidad = '" + producto.getDisponibilidad() + "', " +
+                "descripcion = '" + producto.getDescripcion() + "', " +
                 "imagenes = '" + producto.getImagenes() + "' " +
                 "WHERE id_producto = " + producto.getIdProducto();
         motorSql.connect();
@@ -63,11 +60,8 @@ public class ProductoDAO implements IDao<Producto, Integer> {
             if (filtro.getIdCategoria() > 0) {
                 sql += " AND id_categoria = " + filtro.getIdCategoria();
             }
-            if (filtro.getId_ingrediente() > 0) {
-                sql += " AND id_ingrediente = " + filtro.getId_ingrediente();
-            }
-            if (filtro.getDisponibilidad() != null && !filtro.getDisponibilidad().isEmpty()) {
-                sql += " AND LOWER(disponibilidad) LIKE '%" + filtro.getDisponibilidad().toLowerCase() + "%'";
+            if (filtro.getDescripcion() != null && !filtro.getDescripcion().isEmpty()) {
+                sql += " AND LOWER(descripcion) LIKE '%" + filtro.getDescripcion().toLowerCase() + "%'";
             }
         }
 
@@ -80,8 +74,7 @@ public class ProductoDAO implements IDao<Producto, Integer> {
                 p.setNombre(rs.getString("nombre"));
                 p.setPrecio(rs.getBigDecimal("precio"));
                 p.setIdCategoria(rs.getInt("id_categoria"));
-                p.setId_ingrediente(rs.getInt("id_ingrediente"));
-                p.setDisponibilidad(rs.getString("disponibilidad"));
+                p.setDescripcion(rs.getString("descripcion"));
                 p.setImagenes(rs.getString("imagenes"));
                 productos.add(p);
             }
@@ -92,5 +85,28 @@ public class ProductoDAO implements IDao<Producto, Integer> {
         }
 
         return productos;
+    }
+
+    public Producto findById(int id) {
+        Producto producto = null;
+        String sql = "SELECT * FROM Producto WHERE id_producto = " + id;
+        try {
+            motorSql.connect();
+            ResultSet rs = motorSql.executeQuery(sql);
+            if (rs.next()) {
+                producto = new Producto();
+                producto.setIdProducto(rs.getInt("id_producto"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setPrecio(rs.getBigDecimal("precio"));
+                producto.setIdCategoria(rs.getInt("id_categoria"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setImagenes(rs.getString("imagenes"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en findById ProductoDAO: " + e.getMessage());
+        } finally {
+            motorSql.disconnect();
+        }
+        return producto;
     }
 }

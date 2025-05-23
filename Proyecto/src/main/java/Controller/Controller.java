@@ -4,8 +4,8 @@ import Controller.Actions.UsuarioAction;
 import Controller.Actions.ProductoAction;
 import Controller.Actions.IngredienteAction;
 import Model.Ingrediente;
-import Model.MotorSQL;
 import Model.Producto;
+import Model.MotorSQL;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -22,81 +22,123 @@ public class Controller extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            response.setContentType("application/json;charset=UTF-8");
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-            response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-            response.setHeader("Access-Control-Max-Age", "3600");
-            response.setContentType("text/plain;charset=UTF-8");
-            response.setContentType("application/json;charset=UTF-8");
-            PrintWriter out = response.getWriter();
+        // Configuración de cabeceras y contenido JSON
+        response.setContentType("application/json;charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setContentType("application/json;charset=UTF-8");
 
+        PrintWriter out = response.getWriter();
         String strAction = request.getParameter("ACTION");
         String[] arrayAction = new String[2];
 
         if (strAction != null && !strAction.isEmpty()) {
-            arrayAction = strAction.split("\\."); // Ej: ["PRODUCTO", "FIND_ALL"]
+            arrayAction = strAction.split("\\."); // Ejemplo: ["PRODUCTO","FIND_BY_ID"]
         }
 
-        MotorSQL motorSQL = new MotorSQL();
-        Connection conn = null;
-
         try {
-            motorSQL.connect();
-            conn = motorSQL.getConnection(); // Si es público o lo tienes implementado
 
             switch (arrayAction[0].toUpperCase()) {
+                // ================= USUARIO =================
                 case "USUARIO": {
-                    UsuarioAction action = new UsuarioAction(); // Sin pasar conn
+                    UsuarioAction usuarioAction = new UsuarioAction();
                     if ("FIND_ALL".equalsIgnoreCase(arrayAction[1])) {
-                        out.print(action.listarUsuarios());
+                        out.print(new Gson().toJson(usuarioAction.listarUsuarios()));
+                    } else {
+                        throw new ServletException("Acción de USUARIO no válida: " + arrayAction[1]);
                     }
                     break;
                 }
+
+                // ================= PRODUCTO =================
                 case "PRODUCTO": {
-                    ProductoAction action = new ProductoAction(); // sin pasar Connection
+                    ProductoAction productoAction = new ProductoAction();
                     switch (arrayAction[1].toUpperCase()) {
                         case "FIND_ALL":
-                            List<Producto> productos = action.listarProductos();
-                            String json = new Gson().toJson(productos);
-                            out.print(json);
+                            List<Producto> productos = productoAction.listarProductos();
+                            out.print(new Gson().toJson(productos));
                             break;
+
                         case "FIND_BY_NAME":
-                            out.print(action.buscarPorNombre(request));
+                            out.print(productoAction.buscarPorNombre(request));
                             break;
+
+                        case "FIND_BY_ID":
+                            String idProdStr = request.getParameter("id_producto");
+                            if (idProdStr != null && !idProdStr.isEmpty()) {
+                                try {
+                                    int idProd = Integer.parseInt(idProdStr);
+                                    Producto prod = productoAction.obtenerProducto(idProd);
+                                    if (prod != null) {
+                                        out.print(new Gson().toJson(prod));
+                                    } else {
+                                        out.print("{\"error\":\"No se encontró producto con id " + idProd + "\"}");
+                                    }
+                                } catch (NumberFormatException nfe) {
+                                    out.print("{\"error\":\"El parámetro 'id_producto' no es un entero válido.\"}");
+                                }
+                            } else {
+                                out.print("{\"error\":\"Falta parámetro 'id_producto'\"}");
+                            }
+                            break;
+
                         default:
                             throw new ServletException("Acción de PRODUCTO no válida: " + arrayAction[1]);
                     }
                     break;
                 }
-                case "INGREDIENTE": {
-                    IngredienteAction action = new IngredienteAction(); // sin conn, estilo profesor
 
+
+                // ================= INGREDIENTE =================
+                case "INGREDIENTE": {
+                    IngredienteAction ingredienteAction = new IngredienteAction();
+
+                    // Listar todos los ingredientes
                     if ("FIND_ALL".equalsIgnoreCase(arrayAction[1])) {
-                        ArrayList<Ingrediente> lista = action.buscarIngredientes(null); // sin filtro
+                        ArrayList<Ingrediente> lista = ingredienteAction.buscarIngredientes(null);
                         out.print(new Gson().toJson(lista));
+
+                        // Buscar ingredientes por nombre (busqueda parcial)
                     } else if ("FIND_BY_NAME".equalsIgnoreCase(arrayAction[1])) {
                         String nombre = request.getParameter("nombre");
-
                         if (nombre != null && !nombre.isEmpty()) {
-                            Ingrediente filtro = new Ingrediente();
+                            Model.Ingrediente filtro = new Model.Ingrediente();
                             filtro.setNombre(nombre);
-                            ArrayList<Ingrediente> lista = action.buscarIngredientes(filtro);
+                            ArrayList<Ingrediente> lista = ingredienteAction.buscarIngredientes(filtro);
                             out.print(new Gson().toJson(lista));
                         } else {
-                            out.print("{\"error\": \"Falta parámetro 'nombre'\"}");
+                            out.print("{\"error\":\"Falta parámetro 'nombre'\"}");
                         }
+
+                        // Listar ingredientes asociados a un producto específico
+                    } else if ("FIND_BY_PRODUCT".equalsIgnoreCase(arrayAction[1])) {
+                        String idProdStr = request.getParameter("id_producto");
+                        if (idProdStr != null && !idProdStr.isEmpty()) {
+                            try {
+                                int idProd = Integer.parseInt(idProdStr);
+                                ArrayList<Ingrediente> listaIng = ingredienteAction.listarPorProducto(idProd);
+                                out.print(new Gson().toJson(listaIng));
+                            } catch (NumberFormatException nfe) {
+                                out.print("{\"error\":\"El parámetro 'id_producto' no es un entero válido.\"}");
+                            }
+                        } else {
+                            out.print("{\"error\":\"Falta parámetro 'id_producto'\"}");
+                        }
+
+                    } else {
+                        throw new ServletException("Acción de INGREDIENTE no válida: " + arrayAction[1]);
                     }
                     break;
                 }
 
+                // ================= OTROS CASOS =================
                 default:
                     throw new ServletException("Acción " + arrayAction[0] + " no válida.");
             }
         } catch (Exception e) {
-            out.print("{\"error\": \"" + e.getMessage() + "\"}");
-        } finally {
-            motorSQL.disconnect(); // Muy importante
+            out.print("{\"error\":\"" + e.getMessage() + "\"}");
         }
     }
 
@@ -112,4 +154,6 @@ public class Controller extends HttpServlet {
         processRequest(request, response);
     }
 }
+
+
 
